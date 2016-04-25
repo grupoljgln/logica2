@@ -1,0 +1,401 @@
+import java.util.*;
+
+
+
+public class Principal {
+
+
+
+	public static void main(String[] args) {
+
+		Aluno[] alunos = new Aluno[10];
+
+		alunos = popularAlunos();
+
+		Scanner scanner = new Scanner(System.in);
+
+		// Q03
+
+		imprimirValores(alunos);
+
+
+
+		double[][] notas = new double[alunos.length][3];
+
+		for (int i = 0; i < alunos.length; i++) {
+
+			notas[i][0] = alunos[i].notas[0];
+
+			notas[i][1] = alunos[i].notas[1];
+
+			notas[i][2] = alunos[i].notas[2];
+
+		}
+
+
+
+		double[] medias;
+
+
+
+		medias = calcularMedia(notas);
+
+		int matriculaDeBusca;
+
+		// Q07
+
+
+
+		imprimirNomeEMedia(alunos, medias);
+
+		// Q10
+
+		do {
+
+			// Q08
+
+
+
+			System.out.println("Informe uma matricula");
+
+			matriculaDeBusca = scanner.nextInt();
+
+			buscaSequencial(alunos, matriculaDeBusca);
+
+		} while (matriculaDeBusca != 0);
+
+		// Q12
+
+		int indice = 0;
+
+		int matriculaDeBusca1;
+
+		do {
+
+			System.out.println("Informe uma matricula");
+
+			matriculaDeBusca1 = scanner.nextInt();
+
+			buscaSequencialIndice(alunos, matriculaDeBusca, indice, medias);
+
+		} while (matriculaDeBusca != 0);
+
+
+
+	}
+
+
+
+	// Q01 Popular os alunos
+
+	public static Aluno[] popularAlunos() {
+
+		Aluno[] alunos = new Aluno[10];
+
+
+
+		Aluno aluno = new Aluno();
+
+		aluno.matricula = 1020;
+
+		aluno.nome = "Ailton";
+
+		aluno.notas[0] = 7.5;
+
+		aluno.notas[1] = 8.9;
+
+		aluno.notas[2] = 6.5;
+
+
+
+		alunos[0] = aluno;
+
+
+
+		aluno = new Aluno();
+
+		aluno.matricula = 1042;
+
+		aluno.nome = "Marlos";
+
+		aluno.notas[0] = 8.2;
+
+		aluno.notas[1] = 7.3;
+
+		aluno.notas[2] = 9.4;
+
+
+
+		alunos[1] = aluno;
+
+
+
+		aluno = new Aluno();
+
+		aluno.matricula = 1112;
+
+		aluno.nome = "Rebeca";
+
+		aluno.notas[0] = 10.0;
+
+		aluno.notas[1] = 9.6;
+
+		aluno.notas[2] = 7.1;
+
+
+
+		alunos[2] = aluno;
+
+
+
+		aluno = new Aluno();
+
+		aluno.matricula = 1132;
+
+		aluno.nome = "Marco";
+
+		aluno.notas[0] = 6.8;
+
+		aluno.notas[1] = 7.5;
+
+		aluno.notas[2] = 8.1;
+
+
+
+		alunos[3] = aluno;
+
+
+
+		aluno = new Aluno();
+
+		aluno.matricula = 1152;
+
+		aluno.nome = "Jane";
+
+		aluno.notas[0] = 8.8;
+
+		aluno.notas[1] = 7.4;
+
+		aluno.notas[2] = 9.2;
+
+
+
+		alunos[4] = aluno;
+
+
+
+		aluno = new Aluno();
+
+		aluno.matricula = 1201;
+
+		aluno.nome = "Pedro";
+
+		aluno.notas[0] = 8.3;
+
+		aluno.notas[1] = 7.9;
+
+		aluno.notas[2] = 9.0;
+
+
+
+		alunos[5] = aluno;
+
+
+
+		aluno = new Aluno();
+
+		aluno.matricula = 1213;
+
+		aluno.nome = "Raquel";
+
+		aluno.notas[0] = 7.2;
+
+		aluno.notas[1] = 8.7;
+
+		aluno.notas[2] = 9.8;
+
+
+
+		alunos[6] = aluno;
+
+
+
+		aluno = new Aluno();
+
+		aluno.matricula = 1232;
+
+		aluno.nome = "Paulo";
+
+		aluno.notas[0] = 8.3;
+
+		aluno.notas[1] = 7.7;
+
+		aluno.notas[2] = 8.9;
+
+
+
+		alunos[7] = aluno;
+
+
+
+		aluno = new Aluno();
+
+		aluno.matricula = 1256;
+
+		aluno.nome = "Vitor";
+
+		aluno.notas[0] = 7.8;
+
+		aluno.notas[1] = 7.7;
+
+		aluno.notas[2] = 8.5;
+
+
+
+		alunos[8] = aluno;
+
+
+
+		aluno = new Aluno();
+
+		aluno.matricula = 1271;
+
+		aluno.nome = "Mara";
+
+		aluno.notas[0] = 8.0;
+
+		aluno.notas[1] = 7.0;
+
+		aluno.notas[2] = 9.0;
+
+
+
+		alunos[9] = aluno;
+
+
+
+		return alunos;
+
+
+
+	}
+
+
+
+	// Procedimentos
+
+
+
+	// Q02
+
+	public static void imprimirValores(Aluno[] alunos) {
+
+		for (int i = 0; i < alunos.length; i++) {
+
+			System.out.printf("%d \t %s \t %.1f \t %.1f \t %.1f\n", alunos[i].matricula, alunos[i].nome,
+
+					alunos[i].notas[0], alunos[i].notas[1], alunos[i].notas[2]);
+
+		}
+
+
+
+	}
+
+
+
+	// Q04
+
+	public static double[] calcularMedia(double[][] notas) {
+
+
+
+		double[] medias = new double[notas.length];
+
+
+
+		for (int i = 0; i < notas.length; i++) {
+
+			medias[i] = (notas[i][0] + notas[i][1] + notas[i][2]) / 3;
+
+		}
+
+
+
+		return medias;
+
+
+
+	}
+
+
+
+	// Q06
+
+	public static void imprimirNomeEMedia(Aluno[] alunos, double[] medias) {
+
+		for (int i = 0; i < alunos.length; i++) {
+
+			System.out.printf("%s \t %2.1f \n", alunos[i], medias[i]);
+
+		}
+
+	}// Q07
+
+
+
+	public static boolean buscaSequencial(Aluno[] alunos, int matriculaDeBusca) {
+
+		boolean existeMatricula = false;
+
+
+
+		for (int i = 0; i < alunos.length; i++) {
+
+			if (matriculaDeBusca == alunos[i].matricula) {
+
+				existeMatricula = true;
+
+			} else {
+
+				existeMatricula = false;
+
+			}
+
+		}
+
+		return existeMatricula;
+
+	}// Q11
+
+
+
+	public static int buscaSequencialIndice(Aluno[] alunos, int matriculaDeBusca, int indice, double medias[]) {
+
+		for (int i = 0; i < alunos.length; i++) {
+
+			if (matriculaDeBusca == alunos[i].matricula) {
+
+				indice = i;
+
+				System.out.printf("%s \t %.1f", alunos[i].matricula, medias[i]);
+
+			} else {
+
+				indice = -1;
+
+				System.out.println(indice);
+
+			}
+
+
+
+		}
+
+		return indice;
+
+	}
+
+
+
+}
